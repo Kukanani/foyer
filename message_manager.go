@@ -13,22 +13,30 @@ import (
 	"time"
 )
 
+// Message holds a single message that is loaded from a file
+// and will be displayed in the foyer.
 type Message struct {
 	file_info  fs.FileInfo
 	short_text string
 	full_text  string
 }
 
+// message_manager is the heart of Foyer, it manages loading,
+// displaying, deleting, and saving messages.
 type message_manager struct {
 	msg_dir_name string
 	messages []Message
 }
 
+// TimeStamp gives an ISO-like string with the current datetime,
+// but modified so that it can be used directly in a filename.
 func TimeStamp() string {
 	ts := time.Now().UTC().Format(time.RFC3339)
 	return strings.Replace(ts, ":", "_", -1)
 }
 
+// CreateMessage writes a given message to a file where it will be found later
+// by the message manager.
 func (mm *message_manager) CreateMessage(short_text string, long_text string) {
 	out_file := path.Join(mm.msg_dir_name, TimeStamp()+".txt")
 	err := os.WriteFile(out_file, []byte(short_text+"\n"+long_text), 0666)
@@ -39,6 +47,7 @@ func (mm *message_manager) CreateMessage(short_text string, long_text string) {
 	}
 }
 
+// PrintMessages displays a summary of all current messages to stdout.
 func (mm *message_manager) PrintMessages() {
 	fmt.Println("There are", len(mm.messages), "message(s):")
 
@@ -69,6 +78,7 @@ func (mm *message_manager) PrintMessages() {
 	}
 }
 
+// DeleteMessage removes a message and its corresponding file.
 func (mm *message_manager) DeleteMessage(msg_no int) {
 	if msg_no >= len(mm.messages) || msg_no < 0 {
 		fmt.Println("Message index out of bounds")
@@ -84,6 +94,8 @@ func (mm *message_manager) DeleteMessage(msg_no int) {
 	}
 }
 
+// PrintFullMessage displays a single message's full details,
+// including modification date and filename.
 func (mm *message_manager) PrintFullMessage(msg_no int) {
 	if msg_no >= len(mm.messages) || msg_no < 0 {
 		fmt.Println("Message index out of bounds")
@@ -106,6 +118,8 @@ func NewMessageManager(msg_dir_name string) message_manager {
 	return mm
 }
 
+// LoadMessages loads all messages from a particular directory into the
+// message_manager.
 func LoadMessages(msg_dir_name string) []Message {
 
 	// load all stored messages

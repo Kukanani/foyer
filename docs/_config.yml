@@ -21,7 +21,7 @@
 title: Foyer
 email: adam.d.allevato@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Super Simple System Message Board
+  Simple Linux Terminal Message Board
 # the subpath of your site, e.g. /blog
 # note that this has to be /foyer because this site gets deployed to <username>.github.io/foyer
 baseurl: "/foyer"

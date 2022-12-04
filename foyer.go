@@ -21,13 +21,13 @@ func main() {
 			short_text := scanner.Text()
 
 			fmt.Println("Write the long version of your message below. You can add newlines.")
-			fmt.Println("To complete the message, add a line consisting only of '!!!'")
+			fmt.Println("To complete the message, add a line consisting only of '~~~'")
 
 			var lines []string
 			long_text := ""
 			for scanner.Scan() {
 				this_line := scanner.Text()
-				if this_line == "!!!" {
+				if this_line == "~~~" {
 					break
 					lines = append(lines, this_line)
 				} else {
@@ -46,7 +46,7 @@ func main() {
 	for {
 		if len(mm.messages) > 0 {
 			fmt.Print("\033[H\033[2J")
-			fmt.Println("Welcome to the foyer.")
+			fmt.Println("You are in the foyer.")
 			mm.PrintMessages()
 			fmt.Println("Enter to exit, message number to view full details, or 'd <N>' to delete message N")
 			var command string
@@ -76,7 +76,7 @@ func main() {
 				scanner.Scan()
 			}
 		} else {
-			fmt.Println("There are no messages in the foyer. Run 'foyer add' to add one.")
+			fmt.Println("There are no messages. Run 'foyer add' to add one.")
 			break
 		}
 	}
