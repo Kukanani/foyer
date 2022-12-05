@@ -46,7 +46,7 @@ func main() {
 			fmt.Print("\033[H\033[2J")
 			fmt.Println("You are in the foyer.")
 			mm.PrintMessages()
-			fmt.Println("Enter to exit, message number to view full details, or 'd <N>' to delete message N")
+			fmt.Println("Enter to exit, message # to view full details, or 'd <N>' to delete message N")
 			var command string
 			scanner := bufio.NewScanner(os.Stdin)
 			scanner.Scan()
