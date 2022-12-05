@@ -23,13 +23,11 @@ func main() {
 			fmt.Println("Write the long version of your message below. You can add newlines.")
 			fmt.Println("To complete the message, add a line consisting only of '~~~'")
 
-			var lines []string
 			long_text := ""
 			for scanner.Scan() {
 				this_line := scanner.Text()
 				if this_line == "~~~" {
 					break
-					lines = append(lines, this_line)
 				} else {
 					long_text = long_text + this_line + "\n"
 				}
