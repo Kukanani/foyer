@@ -5,3 +5,12 @@
 ![A recording of using Foyer on a linux machine](https://github.com/Kukanani/foyer/blob/main/docs/foyer_example.gif)
 
 Please see the [documentation](https://kukanani.github.io/foyer/) for more details.
+
+
+## For Developers
+
+### Releasing
+
+```bash
+GITHUB_TOKEN=$(cat .token) goreleaser release
+```
